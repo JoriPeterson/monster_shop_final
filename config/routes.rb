@@ -12,11 +12,6 @@ Rails.application.routes.draw do
 
   resources :reviews, only: [:edit, :update, :destroy]
 
-	resources :users, only: [:create, :update] do
-		resources :addresses, only: [:new, :create]
-	end
-
-	resources :addresses, only: [:edit, :update, :destroy]
 
   get '/cart', to: 'cart#show'
   post '/cart/:item_id', to: 'cart#add_item'
@@ -37,6 +32,12 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#login'
   get '/logout', to: 'sessions#logout'
+
+	resources :users, only: [:create, :update]
+
+	namespace :user do
+		resources :addresses, only: [:index, :new, :create, :edit, :update, :destroy]
+	end
 
   namespace :merchant do
     get '/', to: 'dashboard#index', as: :dashboard

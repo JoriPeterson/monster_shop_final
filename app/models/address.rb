@@ -8,5 +8,5 @@ class Address < ApplicationRecord
                         :state,
                         :zip
 
-  enum type: ['home', 'work', 'other']
+  enum nickname: ['home', 'work', 'other']
 end

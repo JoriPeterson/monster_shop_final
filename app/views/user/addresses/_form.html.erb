@@ -16,7 +16,7 @@
   <%= number_field_tag :zip, @address.zip %>
 
 	<%= label_tag :nickname %>
-  <%= text_field_tag :nickname, @address.nickname %>
+  <%= select_tag :nickname, options_for_select(['Home', 'Work', 'School', 'Other']) %>
 
   <%= submit_tag button_text %>
 <% end %>

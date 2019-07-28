@@ -9,4 +9,8 @@ class Address < ApplicationRecord
                         :zip
 
   enum nickname: %w(Home Work School Other)
+
+	def display
+		"#{self.nickname}: #{self.name} #{self.address} #{self.city} #{self.state} #{self.zip}"
+	end
 end

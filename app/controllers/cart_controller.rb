@@ -1,6 +1,6 @@
 class CartController < ApplicationController
   before_action :exclude_admin
-  
+
   def add_item
     item = Item.find(params[:item_id])
     session[:cart] ||= {}
@@ -15,6 +15,8 @@ class CartController < ApplicationController
   end
 
   def show
+		@user = current_user
+		@addresses = @user.addresses
   end
 
   def empty

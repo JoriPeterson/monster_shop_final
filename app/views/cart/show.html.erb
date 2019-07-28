@@ -16,8 +16,13 @@
       <%= button_to 'Remove', "/cart/#{item.id}", method: :delete %>
     </section>
   <% end %>
+
+	<p>Please select a shipping address:</p>
+	<%= collection_select(:post, :my_selection, @addresses, :id, :display ) %>
+
   <section id='checkout'>
     <% if current_user %>
+		<br>
       <%= button_to 'Check Out', '/orders' %>
     <% else %>
       <p>You must <%= link_to 'register', registration_path %> or <%= link_to 'log in', login_path %> to checkout.</p>

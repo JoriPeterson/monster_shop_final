@@ -26,7 +26,7 @@ RSpec.describe Merchant do
       @user_1 = User.create!(name: 'Megan', email: 'megan_1@example.com', password: 'securepassword')
       @user_2 = User.create!(name: 'Megan', email: 'megan_2@example.com', password: 'securepassword')
 			@address_1 = @user_1.addresses.create!(name: 'Megan', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80902)
-			@address_2 = @user_2.addresses.create!(name: 'Megan', address: '123 Main St', city: 'Denver', state: 'IA', zip: 70902)
+			@address_2 = @user_2.addresses.create!(name: 'Megan', address: '777 Main St', city: 'Denver', state: 'IA', zip: 70902)
       @order_1 = @user_1.orders.create!
       @order_2 = @user_2.orders.create!(status: 1)
       @order_3 = @user_2.orders.create!(status: 1)

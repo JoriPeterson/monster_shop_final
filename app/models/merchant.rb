@@ -18,7 +18,15 @@ class Merchant < ApplicationRecord
     items.average(:price)
   end
 
+	# def distinct_cities
+  #   users.joins('JOIN addresses ON addresses.user_id = users.id')
+  #         .order('city_state')
+  #         .distinct
+  #         .pluck("CONCAT_WS(', ', addresses.city, addresses.state) AS city_state")
+	# end
+	
   def distinct_cities
+		orders.joins('JOIN users ON orders.user_id = users.id')
     users.joins('JOIN addresses ON addresses.user_id = users.id')
           .order('city_state')
           .distinct

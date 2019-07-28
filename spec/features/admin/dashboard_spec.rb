@@ -12,7 +12,7 @@ RSpec.describe 'Admin Dashboard' do
       @order_1 = @m_user.orders.create!(status: "packaged")
       @order_2 = @m_user.orders.create!(status: "pending")
       @order_3 = @m_user.orders.create!(status: "cancelled")
-      @admin = User.create(name: 'Megan', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218, email: 'admin@example.com', password: 'securepassword', role: :admin)
+      @admin = User.create(name: 'Megan', email: 'admin@example.com', password: 'securepassword', role: :admin)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
     end
 

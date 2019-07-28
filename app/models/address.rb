@@ -8,7 +8,5 @@ class Address < ApplicationRecord
                         :state,
                         :zip
 
-	validates_uniqueness_of :address
-
   enum nickname: %w(Home Work School Other)
 end

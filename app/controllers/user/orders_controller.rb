@@ -7,16 +7,20 @@ class User::OrdersController < ApplicationController
 
   def show
     @order = current_user.orders.find(params[:id])
+		@address = current_user.addresses.find(@order.address_id)
   end
 
   def create
     order = current_user.orders.new
-    order.save
+
+		order.address_id = params[:post][:my_selection]
+		order.save
+
       cart.items.each do |item|
         order.order_items.create({
           item: item,
           quantity: cart.count_of(item.id),
-          price: item.price
+          price: item.price,
           })
       end
     session.delete(:cart)
@@ -29,4 +33,10 @@ class User::OrdersController < ApplicationController
     order.cancel
     redirect_to "/profile/orders/#{order.id}"
   end
+
+	private
+
+	def order_params
+		params.permit(:status, :user_id, :address_id)
+	end
 end

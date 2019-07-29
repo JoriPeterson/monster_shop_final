@@ -6,6 +6,11 @@
 <p>Total: <%= number_to_currency(@order.grand_total) %></p>
 <%= button_to 'Cancel Order', "/profile/orders/#{@order.id}", method: :delete if @order.pending? %>
 
+<h2>Shipping Address</h2>
+<p>Address: <%= @address.display %> </p>
+
+<%= button_to 'Change Address', profile_path %>
+
 <h2>Order Items</h2>
 <% @order.order_items.each do |order_item| %>
   <section id='order-item-<%= order_item.id %>'>

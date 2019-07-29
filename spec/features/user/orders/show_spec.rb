@@ -10,9 +10,11 @@ RSpec.describe 'Order Show Page' do
       @ogre = @megan.items.create!(name: 'Ogre', description: "I'm an Ogre!", price: 20.25, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 5 )
       @giant = @megan.items.create!(name: 'Giant', description: "I'm a Giant!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 3 )
       @hippo = @brian.items.create!(name: 'Hippo', description: "I'm a Hippo!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 1 )
-      @user = User.create!(name: 'Megan', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218, email: 'megan_1@example.com', password: 'securepassword')
-      @order_1 = @user.orders.create!(status: "packaged")
-      @order_2 = @user.orders.create!(status: "pending")
+      @user = User.create!(name: 'Megan', email: 'megan_1@example.com', password: 'securepassword')
+			@address_1 = @user.addresses.create!(name: 'Megan', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218, nickname: 0)
+			@address_2 = @user.addresses.create!(name: 'Megan', address: '888 Market St', city: 'Denver', state: 'CO', zip: 80218, nickname: 1)
+      @order_1 = @user.orders.create!(status: "packaged", address_id: @address_1.id)
+      @order_2 = @user.orders.create!(status: "pending", address_id: @address_1.id)
       @order_item_1 = @order_1.order_items.create!(item: @ogre, price: @ogre.price, quantity: 2, fulfilled: true)
       @order_item_2 = @order_2.order_items.create!(item: @giant, price: @hippo.price, quantity: 2, fulfilled: true)
       @order_item_3 = @order_2.order_items.create!(item: @ogre, price: @ogre.price, quantity: 2, fulfilled: false)
@@ -82,5 +84,28 @@ RSpec.describe 'Order Show Page' do
       expect(@giant.inventory).to eq(5)
       expect(@ogre.inventory).to eq(7)
     end
+
+		it 'displays the address submitted with the order' do
+
+			visit item_path(@ogre)
+			click_button 'Add to Cart'
+			visit item_path(@giant)
+			click_button 'Add to Cart'
+			visit item_path(@giant)
+			click_button 'Add to Cart'
+
+			visit '/cart'
+
+			page.select("Home: Megan 123 Main St Denver CO 80218", :from => @addresses)
+
+			click_button "Check Out"
+
+			order = Order.last
+			click_link order.id
+			order.reload
+
+			expect(current_path).to eq("/profile/orders/#{order.id}")
+			expect(page).to have_content("Home: Megan 123 Main St Denver CO 80218")
+		end
   end
 end

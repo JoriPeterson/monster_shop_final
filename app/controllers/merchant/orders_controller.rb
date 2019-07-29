@@ -2,6 +2,7 @@ class Merchant::OrdersController < Merchant::BaseController
   def show
     @order = Order.find(params[:id])
     @merchant = current_user.merchant
+		@address = @order.address
   end
 
   def fulfill

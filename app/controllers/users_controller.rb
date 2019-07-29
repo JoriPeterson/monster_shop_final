@@ -10,12 +10,28 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+	def new_address
+		@user = current_user
+		@address = Address.new
+	end
+
+	def create_address
+		@user = current_user
+		@address = @user.addresses.new(address_params)
+		if @address.save
+			redirect_to profile_path
+			flash[:notice] = "Welcome, #{@user.name}!"
+		else
+			generate_flash(@address)
+			render :new_address
+		end
+	end
+
   def create
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      flash[:notice] = "Welcome, #{@user.name}!"
-      redirect_to profile_path
+      redirect_to address_registration_path
     else
       generate_flash(@user)
       render :new
@@ -46,4 +62,8 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :address, :city, :state, :zip, :email, :password)
   end
+
+	def address_params
+		params.permit(:nickname, :name, :address, :city, :state, :zip)
+	end
 end

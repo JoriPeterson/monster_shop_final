@@ -19,10 +19,11 @@ class Merchant < ApplicationRecord
   end
 
   def distinct_cities
-    orders.joins('JOIN users ON orders.user_id = users.id')
+		order_items.joins('JOIN orders ON order_items.order_id = orders.id')
+    			.joins('JOIN addresses ON orders.address_id = addresses.id')
           .order('city_state')
           .distinct
-          .pluck("CONCAT_WS(', ', users.city, users.state) AS city_state")
+          .pluck("CONCAT_WS(', ', addresses.city, addresses.state) AS city_state")
   end
 
   def pending_orders

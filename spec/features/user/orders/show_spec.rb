@@ -13,8 +13,8 @@ RSpec.describe 'Order Show Page' do
       @user = User.create!(name: 'Megan', email: 'megan_1@example.com', password: 'securepassword')
 			@address_1 = @user.addresses.create!(name: 'Megan', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218, nickname: 0)
 			@address_2 = @user.addresses.create!(name: 'Megan', address: '888 Market St', city: 'Denver', state: 'CO', zip: 80218, nickname: 1)
-      @order_1 = @user.orders.create!(status: "packaged")
-      @order_2 = @user.orders.create!(status: "pending")
+      @order_1 = @user.orders.create!(status: "packaged", address_id: @address_1.id)
+      @order_2 = @user.orders.create!(status: "pending", address_id: @address_1.id)
       @order_item_1 = @order_1.order_items.create!(item: @ogre, price: @ogre.price, quantity: 2, fulfilled: true)
       @order_item_2 = @order_2.order_items.create!(item: @giant, price: @hippo.price, quantity: 2, fulfilled: true)
       @order_item_3 = @order_2.order_items.create!(item: @ogre, price: @ogre.price, quantity: 2, fulfilled: false)
@@ -101,10 +101,10 @@ RSpec.describe 'Order Show Page' do
 			click_button "Check Out"
 
 			order = Order.last
-			# click_link order.id
+			click_link order.id
+			order.reload
 
-			# expect(current_path).to eq("/profile/orders/#{order.id}")
-			expect(current_path).to eq("/profile/orders")
+			expect(current_path).to eq("/profile/orders/#{order.id}")
 			expect(page).to have_content("Home: Megan 123 Main St Denver CO 80218")
 		end
   end

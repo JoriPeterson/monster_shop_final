@@ -8,8 +8,9 @@
 
 <h2>Shipping Address</h2>
 <p>Address: <%= @address.display %> </p>
-
-<%= button_to 'Change Address', profile_path %>
+<% if @order.pending? %>
+	<%= button_to 'Change Address', "/profile/orders/#{@order.id}/edit", method: :get %>
+<% end %>
 
 <h2>Order Items</h2>
 <% @order.order_items.each do |order_item| %>

@@ -32,43 +32,57 @@ RSpec.describe 'Edit User Address' do
     end
 
     it 'I can change my address if the order is still pending' do
-      visit "/profile/orders/#{@order_2.id}"
-# save_and_open_page
+
+			visit "/profile/orders/#{@order_2.id}"
       click_button 'Change Address'
 
       expect(current_path).to eq("/profile/orders/#{@order_2.id}/edit")
 
-      # name = 'Jori'
-      # address = "777 Sheridan Ave"
-      # city = "Westminster"
-      # state = 'CO'
-      # zip = 80021
-			#
-      # fill_in 'Name', with: name
-      # fill_in 'Address', with: address
-      # fill_in 'City', with: city
-      # fill_in 'State', with: state
-      # fill_in 'zip', with: zip
-      # click_button 'Update Address'
-			#
-      # expect(current_path).to eq(user_addresses_path)
-      # expect(page).to have_content("Address: #{address}")
-      # expect(page).to have_content("City: #{city}")
-      # expect(page).to have_content("State: #{state}")
-      # expect(page).to have_content("Zip: #{zip}")
+			page.select("Work: Megan 777 Market St Denver CO 80218", :from => @addresses)
+
+			click_button "Change Address"
+
+			expect(current_path).to eq("/profile/orders/#{@order_2.id}")
+			expect(page).to have_content("#{@address_2.nickname}: #{@address_2.name} #{@address_2.address} #{@address_2.city} #{@address_2.state} #{@address_2.zip}")
+		end
+
+		it "Or I can add a new address" do
+
+			visit "/profile/orders/#{@order_2.id}"
+      click_button 'Change Address'
+
+      name = 'Jori'
+      address = "777 Sheridan Ave"
+      city = "Westminster"
+      state = 'CO'
+      zip = 80021
+
+      fill_in 'Name', with: name
+      fill_in 'Address', with: address
+      fill_in 'City', with: city
+      fill_in 'State', with: state
+      fill_in 'zip', with: zip
+      click_button 'New Address'
+
+      expect(current_path).to eq(user_addresses_path)
+      expect(page).to have_content("Address: #{address}")
+      expect(page).to have_content("City: #{city}")
+      expect(page).to have_content("State: #{state}")
+      expect(page).to have_content("Zip: #{zip}")
     end
 
-    xit 'I can not create an address for a user with an incomplete form' do
+    it 'I can not create an address for a user with an incomplete form' do
       name = 'Jori'
 
-      visit "/user/addresses/#{@address_1.id}/edit"
+			visit "/profile/orders/#{@order_2.id}"
+      click_button 'Change Address'
 
       fill_in 'Name', with: name
 			fill_in 'Address', with: " "
-      click_button 'Update Address'
+      click_button 'New Address'
 
       expect(page).to have_content("address: [\"can't be blank\"]")
-      expect(page).to have_button('Update Address')
+      expect(page).to have_button('New Address')
     end
   end
 end

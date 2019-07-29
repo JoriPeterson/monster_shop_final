@@ -1,8 +1,8 @@
 <p>Please select an address:</p>
-	<%= form_tag "/orders", method: :patch do %>
+	<%= form_tag "/profile/orders/#{@order.id}", method: :patch do %>
 		<%= collection_select(:patch, :my_selection, @addresses, :id, :display ) %>
 		<%= submit_tag 'Change Address'  %>
 <% end %>
 
 <p>Or add new address:</p>
-<%= render partial: 'user/addresses/form', locals: { path: "/user/addresses" , method: :post, button_text: 'New Address' } %>
+<%= render partial: 'user/addresses/form', locals: { path: "/user/addresses", method: :post, button_text: 'New Address' } %>

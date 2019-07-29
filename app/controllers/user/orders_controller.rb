@@ -34,6 +34,15 @@ class User::OrdersController < ApplicationController
 		@address = Address.new
 	end
 
+	def update
+		@order = current_user.orders.find(params[:id])
+		@order.address_id = params[:patch][:my_selection]
+		@order.update(order_params)
+		@order.reload
+		flash[:notice] = "Address updated successfully!"
+		redirect_to "/profile/orders/#{@order.id}"
+	end
+
   def cancel
     order = current_user.orders.find(params[:id])
     order.cancel

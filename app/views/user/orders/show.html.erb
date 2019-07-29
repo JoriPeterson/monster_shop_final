@@ -7,7 +7,7 @@
 <%= button_to 'Cancel Order', "/profile/orders/#{@order.id}", method: :delete if @order.pending? %>
 
 <h2>Shipping Address</h2>
-<p>Address: <%= @address.display %> </p>
+<p><%= @address.display %></p>
 <% if @order.pending? %>
 	<%= button_to 'Change Address', "/profile/orders/#{@order.id}/edit", method: :get %>
 <% end %>

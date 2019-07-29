@@ -17,13 +17,15 @@
     </section>
   <% end %>
 
-	<p>Please select a shipping address:</p>
-	<%= collection_select(:post, :my_selection, @addresses, :id, :display ) %>
 
   <section id='checkout'>
     <% if current_user %>
-		<br>
-      <%= button_to 'Check Out', '/orders' %>
+		<p>Please select an address:</p>
+			<%= form_tag "/orders", method: :post do %>
+				<%= collection_select(:post, :my_selection, @addresses, :id, :display ) %>
+				<%= submit_tag 'Check Out' %>
+		<% end %>
+
     <% else %>
       <p>You must <%= link_to 'register', registration_path %> or <%= link_to 'log in', login_path %> to checkout.</p>
     <% end %>

@@ -27,6 +27,7 @@ RSpec.describe 'Cart Show Page' do
       visit '/cart'
 
 			page.select("Home: Megan 123 Main St Denver CO 80218", :from => @addresses)
+
 			expect(page).to have_content("#{@address_1.nickname}: #{@address_1.name} #{@address_1.address} #{@address_1.city} #{@address_1.state} #{@address_1.zip}")
 		end
 

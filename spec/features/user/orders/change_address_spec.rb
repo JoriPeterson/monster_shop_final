@@ -84,5 +84,14 @@ RSpec.describe 'Edit User Address' do
       expect(page).to have_content("address: [\"can't be blank\"]")
       expect(page).to have_button('New Address')
     end
+
+		it 'I cannot change the address if the order has been shipped' do
+
+			visit "/profile/orders/#{@order_1.id}"
+			expect(page).to_not have_button('Change Address')
+
+			visit "/profile/orders/#{@order_1.id}/edit"
+			expect(page).to have_content("The page you were looking for doesn't exist.")
+		end
   end
 end

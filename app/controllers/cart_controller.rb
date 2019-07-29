@@ -16,7 +16,9 @@ class CartController < ApplicationController
 
   def show
 		@user = current_user
-		@addresses = @user.addresses
+		if @user
+			@addresses = @user.addresses
+		end	
   end
 
   def empty

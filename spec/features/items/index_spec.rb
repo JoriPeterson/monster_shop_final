@@ -13,7 +13,7 @@ RSpec.describe 'Item Index Page' do
       @user = User.create!(name: 'Megan', email: 'megan@example.com', password: 'securepassword')
 			@address_1 = @user.addresses.create!(name: 'Megan', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80902)
 			@address_2 = @user.addresses.create!(name: 'Megan', address: '777 Main St', city: 'Denver', state: 'IA', zip: 70902)
-			@order_1 = @use.orders.create!(status: 1, address_id: @address_1.id)
+			@order_1 = @user.orders.create!(status: 1, address_id: @address_1.id)
       @order_2 = @user.orders.create!(address_id: @address_1.id)
       @order_3 = @user.orders.create!(address_id: @address_1.id)
       @order_1.order_items.create!(item: @ogre, price: @ogre.price, quantity: 2)

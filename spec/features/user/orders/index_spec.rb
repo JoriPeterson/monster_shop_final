@@ -1,4 +1,5 @@
 require 'rails_helper'
+include ActionView::Helpers::NumberHelper
 
 RSpec.describe 'User Order Show Page' do
   describe 'As a Registered User' do
@@ -18,11 +19,24 @@ RSpec.describe 'User Order Show Page' do
 			@order_3 = @user_1.orders.create!(address_id: @address_1.id)
       @order_1.order_items.create!(item: @ogre, price: @ogre.price, quantity: 2)
       @order_2.order_items.create!(item: @giant, price: @hippo.price, quantity: 2)
-      @order_2.order_items.create!(item: @ogre, price: @hippo.price, quantity: 2)
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+      @order_3.order_items.create!(item: @ogre, price: @hippo.price, quantity: 2)
+
+			allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user_1)
+
+			visit item_path(@ogre)
+			click_button 'Add to Cart'
+			visit item_path(@giant)
+			click_button 'Add to Cart'
+			visit item_path(@giant)
+			click_button 'Add to Cart'
+
+			visit '/cart'
+
+			click_button "Check Out"
     end
 
     it 'I can link to my orders from my profile' do
+
       visit profile_path
 
       click_link 'My Orders'

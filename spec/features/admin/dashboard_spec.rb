@@ -10,7 +10,7 @@ RSpec.describe 'Admin Dashboard' do
       @giant = @merchant_1.items.create!(name: 'Giant', description: "I'm a Giant!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 3 )
       @hippo = @merchant_2.items.create!(name: 'Hippo', description: "I'm a Hippo!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 1 )
 			@address_1 = @m_user.addresses.create!(name: 'Megan', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80902)
-			@order_1 = @m_user.orders.create!(status: "pending", address_id: @address_1.id)
+			@order_1 = @m_user.orders.create!(status: "packaged", address_id: @address_1.id)
       @order_2 = @m_user.orders.create!(status: "pending", address_id: @address_1.id)
 			@order_3 = @m_user.orders.create!(status: "pending", address_id: @address_1.id)
       @admin = User.create(name: 'Megan', email: 'admin@example.com', password: 'securepassword', role: :admin)
@@ -21,8 +21,8 @@ RSpec.describe 'Admin Dashboard' do
       visit '/admin'
 
       expect(page.all('.order')[0]).to have_content(@order_2.id)
-      expect(page.all('.order')[1]).to have_content(@order_1.id)
-      expect(page.all('.order')[2]).to have_content(@order_3.id)
+      expect(page.all('.order')[1]).to have_content(@order_3.id)
+      expect(page.all('.order')[2]).to have_content(@order_1.id)
 
       within "#order-#{@order_1.id}" do
         expect(page).to have_content(@m_user.name)

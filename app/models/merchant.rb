@@ -24,7 +24,7 @@ class Merchant < ApplicationRecord
   #         .distinct
   #         .pluck("CONCAT_WS(', ', addresses.city, addresses.state) AS city_state")
 	# end
-	
+
   def distinct_cities
 		orders.joins('JOIN users ON orders.user_id = users.id')
     users.joins('JOIN addresses ON addresses.user_id = users.id')

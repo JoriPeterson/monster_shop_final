@@ -4048,18 +4048,20 @@
         1,
         2,
         2,
+        2,
         null,
         null
       ],
       "/Users/Jori/turing/2module/projects/monster_shop_final/app/models/user.rb": [
         1,
         1,
+        1,
+        1,
         null,
         1,
         1,
         1,
         null,
-        1,
         null,
         1,
         null,
@@ -4699,6 +4701,6 @@
         null
       ]
     },
-    "timestamp": 1564516631
+    "timestamp": 1564519917
   }
 }

@@ -14,42 +14,52 @@
  *= require_self
  */
 
-	body {
-		background-image: url("https://i.pinimg.com/originals/97/05/8f/97058f3862a301c176d0a7dae0edba2a.jpg");
-		text-align: center;
-	}
+body {
+	background-image: url("https://i.pinimg.com/originals/97/05/8f/97058f3862a301c176d0a7dae0edba2a.jpg");
+	text-align: center;
+}
 
-	h1 {
-		max-width: 700px;
-		padding: 10px;
-		border: 5px solid gray;
-		margin: auto;
-		background-color: white;
-	}
+h1 {
+	max-width: 700px;
+	padding: 10px;
+	border: 5px solid gray;
+	margin: auto;
+	background-color: white;
+}
 
-	section {
-    font-weight: bold;
-    width: 700px;
-    padding: 10px;
-    border: 5px solid gray;
-    margin: auto;
-    background-color: #e3f2fd;
-      p {
-        margin-top: 5px;
-        margin-bottom: 5px;
-        margin-left: 25px;
-      }
+section {
+  font-weight: bold;
+  width: 700px;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: auto;
+  background-color: #e3f2fd;
+    p {
+      margin-top: 5px;
+      margin-bottom: 5px;
+      margin-left: 25px;
     }
-
-  h2 {
-    width: 320px;
-    padding: 10px;
-    border: 5px solid gray;
-    margin: auto;
-    background-color: white;
   }
 
- .link {
-	 color: white;
-	 font-weight: bold;
- }
+h2 {
+  width: 320px;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: auto;
+  background-color: white;
+}
+
+input[type=submit] {
+  width: 40%;
+  background-color: #b4b4b4;
+  color: white;
+  padding: 5px 5px;
+  margin: 5px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: darkgray;
+}

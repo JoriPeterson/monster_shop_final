@@ -49,10 +49,7 @@
     background-color: white;
   }
 
-	section {
-		text-align: center;
-		position: center;
-		font-weight: bold;
-		padding: 10px;
-		border: 5px, solid black;
-	}
+ .link {
+	 color: white;
+	 font-weight: bold;
+ }

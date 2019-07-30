@@ -14,4 +14,12 @@ class Address < ApplicationRecord
 	def display
 		"#{self.nickname}: #{self.name} #{self.address} #{self.city} #{self.state} #{self.zip}"
 	end
+
+	def shipped_orders
+    orders.where(status: 'shipped').pluck(:address_id)
+  end
+
+	def been_shipped_to?(address)
+		address.shipped_orders.include?(address.id)
+	end
 end

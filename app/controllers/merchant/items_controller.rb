@@ -3,6 +3,12 @@ class Merchant::ItemsController < Merchant::BaseController
     @items = current_user.merchant.items
   end
 
+	def show
+		@merchant = current_user.merchant
+		@item = Item.find(params[:id])
+		render '/items/show'
+	end
+
   def new
   end
 

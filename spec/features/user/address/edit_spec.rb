@@ -9,10 +9,10 @@ RSpec.describe 'Edit User Address' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
     end
 
-    it 'I can click a link to a new address form page' do
+    it 'I can click a button to a new address form page' do
       visit user_addresses_path
 
-      click_link 'Edit Address'
+      click_button 'Edit Address'
 
       expect(current_path).to eq("/user/addresses/#{@address.id}/edit")
     end

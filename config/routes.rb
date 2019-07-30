@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
 
   get '/cart', to: 'cart#show'
+	get '/cart/edit', to: 'cart#edit'
+	post '/cart', to: 'cart#new_address'
   post '/cart/:item_id', to: 'cart#add_item'
   delete '/cart', to: 'cart#empty'
   patch '/cart/:change/:item_id', to: 'cart#update_quantity'
@@ -29,6 +31,9 @@ Rails.application.routes.draw do
   post '/orders', to: 'user/orders#create'
   get '/profile/orders', to: 'user/orders#index'
   get '/profile/orders/:id', to: 'user/orders#show'
+  get '/profile/orders/:id/edit', to: 'user/orders#edit'
+  post '/profile/orders/:id/edit', to: 'user/orders#new_address'
+  patch '/profile/orders/:id', to: 'user/orders#update'
   delete '/profile/orders/:id', to: 'user/orders#cancel'
 
   get '/login', to: 'sessions#new'
@@ -44,7 +49,7 @@ Rails.application.routes.draw do
   namespace :merchant do
     get '/', to: 'dashboard#index', as: :dashboard
     resources :orders, only: :show
-    resources :items, only: [:index, :new, :create, :edit, :update, :destroy]
+    resources :items, only: [:index, :show, :new, :create, :edit, :update, :destroy]
     put '/items/:id/change_status', to: 'items#change_status'
     get '/orders/:id/fulfill/:order_item_id', to: 'orders#fulfill'
   end

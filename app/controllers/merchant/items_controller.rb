@@ -18,7 +18,7 @@ class Merchant::ItemsController < Merchant::BaseController
     if item.save
       redirect_to "/merchant/items"
     else
-      generate_flash(item)
+			flash[:error] = item.errors.full_messages.to_sentence
       render :new
     end
   end
@@ -32,7 +32,7 @@ class Merchant::ItemsController < Merchant::BaseController
     if @item.update(item_params)
       redirect_to "/merchant/items"
     else
-      generate_flash(@item)
+      flash[:error] = @item.errors.full_messages.to_sentence
       render :edit
     end
   end
@@ -53,7 +53,7 @@ class Merchant::ItemsController < Merchant::BaseController
     if item.orders.empty?
       item.destroy
     else
-      flash[:notice] = "#{item.name} can not be deleted - it has been ordered!"
+      flash[:error] = "#{item.name} can not be deleted - it has been ordered!"
     end
     redirect_to '/merchant/items'
   end

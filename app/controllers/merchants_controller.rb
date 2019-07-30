@@ -15,7 +15,7 @@ class MerchantsController < ApplicationController
     if merchant.save
       redirect_to '/merchants'
     else
-      generate_flash(merchant)
+      flash[:error] = merchant.errors.full_messages.to_sentence
       render :new
     end
   end
@@ -29,7 +29,7 @@ class MerchantsController < ApplicationController
     if @merchant.update(merchant_params)
       redirect_to "/merchants/#{@merchant.id}"
     else
-      generate_flash(@merchant)
+      flash[:error] = @merchant.errors.full_messages.to_sentence
       render :edit
     end
   end
@@ -39,7 +39,7 @@ class MerchantsController < ApplicationController
     if merchant.order_items.empty?
       merchant.destroy
     else
-      flash[:notice] = "#{merchant.name} can not be deleted - they have orders!"
+      flash[:danger] = "#{merchant.name} can not be deleted - they have orders!"
     end
     redirect_to '/merchants'
   end

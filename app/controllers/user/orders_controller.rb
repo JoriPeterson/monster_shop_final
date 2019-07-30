@@ -66,7 +66,7 @@ class User::OrdersController < ApplicationController
 					flash[:notice] = "Your address has been successfully added!"
 					redirect_to "/profile/orders/#{@order.id}/edit"
 				else
-					generate_flash(@address)
+					flash[:error] = @address.errors.full_messages.to_sentence
 					render :edit
 				end
 			end

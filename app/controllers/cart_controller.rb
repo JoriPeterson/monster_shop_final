@@ -5,7 +5,7 @@ class CartController < ApplicationController
     item = Item.find(params[:item_id])
     session[:cart] ||= {}
     if cart.limit_reached?(item.id)
-      flash[:notice] = "You have all the item's inventory in your cart already!"
+      flash[:error] = "You have all the item's inventory in your cart already!"
     else
       cart.add_item(item.id.to_s)
       session[:cart] = cart.contents
@@ -48,13 +48,12 @@ class CartController < ApplicationController
 
 	def new_address
 		user = current_user
-		# @addresses = current_user.addresses
 		@address = user.addresses.new(address_params)
 			if @address.save
 				flash[:notice] = "Your address has been successfully added!"
 				redirect_to cart_path
 			else
-				generate_flash(@address)
+				flash[:error] = @address.errors.full_messages.to_sentence
 				render :show
 			end
 	end

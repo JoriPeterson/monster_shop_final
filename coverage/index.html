@@ -14,7 +14,7 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2019-07-30T14:51:57-06:00">2019-07-30T14:51:57-06:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2019-07-30T15:36:44-06:00">2019-07-30T15:36:44-06:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -32,8 +32,8 @@
   <a name="AllFiles"></a>
   <div>
     <b>87</b> files in total.
-    <b>2711</b> relevant lines. 
-    <span class="green"><b>2708</b> lines covered</span> and
+    <b>2715</b> relevant lines. 
+    <span class="green"><b>2712</b> lines covered</span> and
     <span class="red"><b>3</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -573,9 +573,9 @@
       <tr>
         <td class="strong"><a href="#3314ca6a0eb1642b1c6a5fdccc41fb940404f99d" class="src_link" title="spec/features/merchant/edit_item_spec.rb">spec/features/merchant/edit_item_spec.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>60</td>
-        <td>42</td>
-        <td>42</td>
+        <td>64</td>
+        <td>46</td>
+        <td>46</td>
         <td>0</td>
         <td>1.2</td>
       </tr>
@@ -11643,8 +11643,8 @@
     <h3>spec/features/merchant/edit_item_spec.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>42</b> relevant lines. 
-      <span class="green"><b>42</b> lines covered</span> and
+      <b>46</b> relevant lines. 
+      <span class="green"><b>46</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -11955,58 +11955,82 @@
         <li class="covered" data-hits="1" data-linenumber="51">
           <span class="hits">1</span>
           
-          <code class="ruby">      click_button &#39;Update Item&#39;</code>
+          <code class="ruby">			fill_in &#39;Description&#39;, with: &quot; &quot;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="52">
+        <li class="covered" data-hits="1" data-linenumber="52">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">			fill_in &#39;Price&#39;, with: &quot; &quot;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="53">
           <span class="hits">1</span>
           
-          <code class="ruby">      expect(page).to have_content(&quot;Description can&#39;t be blank&quot;)</code>
+          <code class="ruby">			fill_in &#39;Image&#39;, with: &quot; &quot;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="54">
           <span class="hits">1</span>
           
-          <code class="ruby">      expect(page).to have_content(&quot;Price can&#39;t be blank&quot;)</code>
+          <code class="ruby">			fill_in &#39;Inventory&#39;, with: &quot; &quot;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="55">
           <span class="hits">1</span>
           
-          <code class="ruby">      expect(page).to have_content(&quot;Image can&#39;t be blank&quot;)</code>
+          <code class="ruby">      click_button &#39;Update Item&#39;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="56">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="56">
           
-          <code class="ruby">      expect(page).to have_content(&quot;Inventory can&#39;t be blank&quot;)</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="57">
           <span class="hits">1</span>
           
+          <code class="ruby">      expect(page).to have_content(&quot;Description can&#39;t be blank&quot;)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="58">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      expect(page).to have_content(&quot;Price can&#39;t be blank&quot;)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="59">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      expect(page).to have_content(&quot;Image can&#39;t be blank&quot;)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="60">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      expect(page).to have_content(&quot;Inventory can&#39;t be blank&quot;)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="61">
+          <span class="hits">1</span>
+          
           <code class="ruby">      expect(page).to have_button(&#39;Update Item&#39;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="58">
+        <li class="never" data-hits="" data-linenumber="62">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="59">
+        <li class="never" data-hits="" data-linenumber="63">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="60">
+        <li class="never" data-hits="" data-linenumber="64">
           
           
           <code class="ruby">end</code>

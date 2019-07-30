@@ -48,6 +48,10 @@ RSpec.describe 'Update Item Page' do
       visit "merchant/items/#{@ogre.id}/edit"
 
       fill_in 'Name', with: name
+			fill_in 'Description', with: " "
+			fill_in 'Price', with: " "
+			fill_in 'Image', with: " "
+			fill_in 'Inventory', with: " "
       click_button 'Update Item'
 
       expect(page).to have_content("Description can't be blank")

@@ -63,3 +63,10 @@ input[type=submit] {
 input[type=submit]:hover {
   background-color: darkgray;
 }
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}

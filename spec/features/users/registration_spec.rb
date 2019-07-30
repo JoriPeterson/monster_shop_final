@@ -40,8 +40,8 @@ RSpec.describe 'User Registration' do
         click_button 'Next'
 
         expect(page).to have_button('Next')
-        expect(page).to have_content("email: [\"can't be blank\"]")
-        expect(page).to have_content("password: [\"can't be blank\"]")
+        expect(page).to have_content("Email can't be blank")
+        expect(page).to have_content("Password can't be blank")
       end
 
       it 'I use a non-unique email' do
@@ -55,7 +55,7 @@ RSpec.describe 'User Registration' do
         click_button 'Next'
 
         expect(page).to have_button('Next')
-        expect(page).to have_content("email: [\"has already been taken\"]")
+        expect(page).to have_content("Email has already been taken")
       end
 
 
@@ -75,10 +75,10 @@ RSpec.describe 'User Registration' do
 
 				expect(page).to have_button('Register')
 
-				expect(page).to have_content("address: [\"can't be blank\"]")
-				expect(page).to have_content("city: [\"can't be blank\"]")
-				expect(page).to have_content("state: [\"can't be blank\"]")
-				expect(page).to have_content("zip: [\"can't be blank\"]")
+				expect(page).to have_content("Address can't be blank")
+				expect(page).to have_content("City can't be blank")
+				expect(page).to have_content("State can't be blank")
+				expect(page).to have_content("Zip can't be blank")
 			end
     end
   end

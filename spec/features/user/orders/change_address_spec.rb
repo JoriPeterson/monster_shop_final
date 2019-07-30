@@ -82,7 +82,7 @@ RSpec.describe 'Edit User Address' do
 			fill_in 'Address', with: " "
       click_button 'New Address'
 
-      expect(page).to have_content("address: [\"can't be blank\"]")
+      expect(page).to have_content("Address can't be blank")
       expect(page).to have_button('New Address')
     end
 

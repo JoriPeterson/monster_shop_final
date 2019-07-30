@@ -1,18 +1,22 @@
-<h2>Order <%= @order.id %></h2>
+<h1>Order <%= @order.id %></h1>
+<section>
 <p>Created On: <%= @order.created_at %></p>
 <p>Updated On: <%= @order.updated_at %></p>
 <p>Status: <%= @order.status %></p>
 <p><%= @order.count_of_items %> items</p>
 <p>Total: <%= number_to_currency(@order.grand_total) %></p>
 <%= button_to 'Cancel Order', "/profile/orders/#{@order.id}", method: :delete if @order.pending? %>
+</section>
 
-<h2>Shipping Address</h2>
+<h1>Shipping Address</h1>
+<section>
 <p><%= @address.display %></p>
 <% unless @order.shipped? %>
 	<%= button_to 'Change Address', "/profile/orders/#{@order.id}/edit", method: :get %>
 <% end %>
+</section>
 
-<h2>Order Items</h2>
+<h1>Order Items</h1>
 <% @order.order_items.each do |order_item| %>
   <section id='order-item-<%= order_item.id %>'>
     <h3><%= link_to order_item.item.name, item_path(order_item.item) %></h3>

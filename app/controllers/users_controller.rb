@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 			redirect_to profile_path
 			flash[:notice] = "Welcome, #{@user.name}!"
 		else
-			generate_flash(@address)
+			flash[:error] = @address.errors.full_messages.to_sentence
 			render :new_address
 		end
 	end
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to address_registration_path
     else
-      generate_flash(@user)
+      flash[:error] = @user.errors.full_messages.to_sentence
       render :new
     end
   end
@@ -52,7 +52,7 @@ class UsersController < ApplicationController
       flash[:notice] = 'Profile has been updated!'
       redirect_to profile_path
     else
-      generate_flash(@user)
+      flash[:error] = @user.errors.full_messages.to_sentence
       render :edit
     end
   end

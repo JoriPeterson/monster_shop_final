@@ -16,7 +16,7 @@ class User::AddressesController < ApplicationController
 			if @address.save
 				redirect_to user_addresses_path
 			else
-				generate_flash(@address)
+				flash[:error] = @address.errors.full_messages.to_sentence
 				render :new
 			end
 	end
@@ -32,7 +32,7 @@ class User::AddressesController < ApplicationController
 			@address.reload
 			redirect_to user_addresses_path
 		else
-			generate_flash(@address)
+			flash[:error] = @address.errors.full_messages.to_sentence
 			render :edit
 		end
 	end
@@ -45,7 +45,7 @@ class User::AddressesController < ApplicationController
 			address.destroy
 			flash[:notice] = "Your address has been successfully deleted"
 		else
-			flash[:notice] = "That address is currently in use. You still have time to edit your address before your order is shipped!"
+			flash[:error] = "That address is currently in use. You still have time to edit your address before your order is shipped!"
 		end
 		redirect_to user_addresses_path
 	end

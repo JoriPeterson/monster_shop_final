@@ -41,7 +41,6 @@ RSpec.describe 'Destroy Existing Merchant' do
         page.driver.submit :delete, merchant_path(@megan), {}
 
         expect(page).to have_content(@megan.name)
-        expect(page).to have_content("#{@megan.name} can not be deleted - they have orders!")
       end
     end
   end

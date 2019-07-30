@@ -13,7 +13,7 @@ RSpec.describe 'Update Item Page' do
     it 'I can click a link to get to an item edit page' do
       visit "/merchant/items"
 
-      click_link 'Update Item'
+      click_button 'Update Item'
 
       expect(current_path).to eq("/merchant/items/#{@ogre.id}/edit")
     end
@@ -48,12 +48,16 @@ RSpec.describe 'Update Item Page' do
       visit "merchant/items/#{@ogre.id}/edit"
 
       fill_in 'Name', with: name
+			fill_in 'Description', with: " "
+			fill_in 'Price', with: " "
+			fill_in 'Image', with: " "
+			fill_in 'Inventory', with: " "
       click_button 'Update Item'
 
-      expect(page).to have_content("description: [\"can't be blank\"]")
-      expect(page).to have_content("price: [\"can't be blank\"]")
-      expect(page).to have_content("image: [\"can't be blank\"]")
-      expect(page).to have_content("inventory: [\"can't be blank\"]")
+      expect(page).to have_content("Description can't be blank")
+      expect(page).to have_content("Price can't be blank")
+      expect(page).to have_content("Image can't be blank")
+      expect(page).to have_content("Inventory can't be blank")
       expect(page).to have_button('Update Item')
     end
   end

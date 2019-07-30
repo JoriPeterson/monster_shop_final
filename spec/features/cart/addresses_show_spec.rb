@@ -65,5 +65,17 @@ RSpec.describe 'Cart Show Page' do
 			click_button "Check Out"
 			expect(current_path).to eq('/profile/orders')
 		end
+
+		it 'I can not create an address for a user with an incomplete form' do
+      name = 'Jori'
+
+			visit '/cart/edit'
+
+      fill_in 'Name', with: name
+			fill_in 'Address', with: " "
+      click_button 'New Address'
+
+      expect(page).to have_content("Address can't be blank")
+    end
 	end
 end

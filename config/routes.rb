@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
 
   get '/cart', to: 'cart#show'
+	get '/cart/edit', to: 'cart#edit'
+	post '/cart', to: 'cart#new_address'
   post '/cart/:item_id', to: 'cart#add_item'
   delete '/cart', to: 'cart#empty'
   patch '/cart/:change/:item_id', to: 'cart#update_quantity'
@@ -30,6 +32,7 @@ Rails.application.routes.draw do
   get '/profile/orders', to: 'user/orders#index'
   get '/profile/orders/:id', to: 'user/orders#show'
   get '/profile/orders/:id/edit', to: 'user/orders#edit'
+  post '/profile/orders/:id/edit', to: 'user/orders#new_address'
   patch '/profile/orders/:id', to: 'user/orders#update'
   delete '/profile/orders/:id', to: 'user/orders#cancel'
 

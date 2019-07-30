@@ -19,12 +19,17 @@
 
 
   <section id='checkout'>
-    <% if current_user %>
-		<p>Please select an address:</p>
-			<%= form_tag "/orders", method: :post do %>
-				<%= collection_select(:post, :my_selection, @addresses, :id, :display ) %>
-				<%= submit_tag 'Check Out' %>
-		<% end %>
+		<% if current_user %>
+			<% if @addresses.empty? %>
+				<%= link_to 'Please enter an address to check out', 'cart/edit' %>
+
+	    <% else%>
+				<p>Please select an address:</p>
+				<%= form_tag "/orders", method: :post do %>
+					<%= collection_select(:post, :my_selection, @addresses, :id, :display ) %>
+					<%= submit_tag 'Check Out' %>
+				<% end %>
+			<% end %>
 
     <% else %>
       <p>You must <%= link_to 'register', registration_path %> or <%= link_to 'log in', login_path %> to checkout.</p>

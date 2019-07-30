@@ -5,4 +5,4 @@
 <% end %>
 
 <p>Or add new address:</p>
-<%= render partial: 'user/addresses/form', locals: { path: "/user/addresses", method: :post, button_text: 'New Address' } %>
+<%= render partial: 'user/addresses/form', locals: { path: "/profile/orders/#{@order.id}/edit", method: :post, button_text: 'New Address' } %>

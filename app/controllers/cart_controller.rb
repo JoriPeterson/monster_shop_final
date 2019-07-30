@@ -18,7 +18,7 @@ class CartController < ApplicationController
 		@user = current_user
 		if @user
 			@addresses = @user.addresses
-		end	
+		end
   end
 
   def empty
@@ -41,4 +41,27 @@ class CartController < ApplicationController
     session[:cart] = cart.contents
     redirect_to '/cart'
   end
+
+	def edit
+		@address = Address.new
+	end
+
+	def new_address
+		user = current_user
+		# @addresses = current_user.addresses
+		@address = user.addresses.new(address_params)
+			if @address.save
+				flash[:notice] = "Your address has been successfully added!"
+				redirect_to cart_path
+			else
+				generate_flash(@address)
+				render :show
+			end
+	end
+
+	private
+
+	def address_params
+		params.permit(:nickname, :name, :address, :city, :state, :zip)
+	end
 end

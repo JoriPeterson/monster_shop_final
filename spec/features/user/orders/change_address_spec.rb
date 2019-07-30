@@ -65,11 +65,11 @@ RSpec.describe 'Edit User Address' do
       fill_in 'zip', with: zip
       click_button 'New Address'
 
-      expect(current_path).to eq(user_addresses_path)
-      expect(page).to have_content("Address: #{address}")
-      expect(page).to have_content("City: #{city}")
-      expect(page).to have_content("State: #{state}")
-      expect(page).to have_content("Zip: #{zip}")
+      expect(current_path).to eq("/profile/orders/#{@order_2.id}/edit")
+			page.select("Home: Jori 777 Sheridan Ave Westminster CO 80021", :from => @addresses)
+
+			expect(current_path).to eq("/profile/orders/#{@order_2.id}/edit")
+			expect(page).to have_content("Home: #{name} #{address} #{city} #{state} #{zip}")
     end
 
     it 'I can not create an address for a user with an incomplete form' do

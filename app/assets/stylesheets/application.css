@@ -14,46 +14,45 @@
  *= require_self
  */
 
-		body {
-			background-image: url("https://i.pinimg.com/originals/97/05/8f/97058f3862a301c176d0a7dae0edba2a.jpg");
-			text-align: center;
-		}
+	body {
+		background-image: url("https://i.pinimg.com/originals/97/05/8f/97058f3862a301c176d0a7dae0edba2a.jpg");
+		text-align: center;
+	}
 
-		h1 {
-			max-width: 700px;
-			padding: 10px;
-			border: 5px solid gray;
-			margin: auto;
-			background-color: #e3f2fd;
-		}
+	h1 {
+		max-width: 700px;
+		padding: 10px;
+		border: 5px solid gray;
+		margin: auto;
+		background-color: white;
+	}
 
-		section {
-        font-weight: bold;
-        width: 700px;
-        padding: 10px;
-        border: 5px solid gray;
-        margin: auto;
-        background-color: #e3f2fd;
-          p {
-            margin-top: 5px;
-            margin-bottom: 5px;
-            margin-left: 25px;
-          }
-        }
+	section {
+    font-weight: bold;
+    width: 700px;
+    padding: 10px;
+    border: 5px solid gray;
+    margin: auto;
+    background-color: #e3f2fd;
+      p {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        margin-left: 25px;
       }
+    }
 
-      h2 {
-        width: 320px;
-        padding: 10px;
-        border: 5px solid gray;
-        margin: auto;
-        background-color: #e3f2fd;
-      }
+  h2 {
+    width: 320px;
+    padding: 10px;
+    border: 5px solid gray;
+    margin: auto;
+    background-color: white;
+  }
 
-		section {
-			text-align: center;
-			position: center;
-			font-weight: bold;
-			padding: 10px;
-			border: 5px, solid black;
-			}
+	section {
+		text-align: center;
+		position: center;
+		font-weight: bold;
+		padding: 10px;
+		border: 5px, solid black;
+	}

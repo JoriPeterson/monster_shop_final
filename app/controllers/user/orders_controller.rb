@@ -46,8 +46,6 @@ class User::OrdersController < ApplicationController
 				@order.reload
 				flash[:notice] = "Address updated successfully!"
 				redirect_to "/profile/orders/#{@order.id}"
-			else
-				render file: 'public/404', status: 404
 			end
 	end
 

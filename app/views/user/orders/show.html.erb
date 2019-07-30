@@ -8,7 +8,7 @@
 
 <h2>Shipping Address</h2>
 <p><%= @address.display %></p>
-<% if @order.pending? %>
+<% unless @order.shipped? %>
 	<%= button_to 'Change Address', "/profile/orders/#{@order.id}/edit", method: :get %>
 <% end %>
 

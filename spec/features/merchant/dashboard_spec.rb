@@ -63,5 +63,13 @@ RSpec.describe 'Merchant Dashboard' do
 
       expect(current_path).to eq("/merchant/orders/#{@order_2.id}")
     end
+
+		it 'I can link to my items index page' do
+      visit '/merchant'
+
+      click_link 'My Items'
+
+      expect(current_path).to eq("/merchant/items")
+    end
   end
 end

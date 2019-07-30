@@ -28,6 +28,7 @@ class User::AddressesController < ApplicationController
 	def update
 		@address = Address.find(params[:id])
 		if @address.update(address_params)
+			flash[:notice] = "Your address has been successfully added"
 			@address.reload
 			redirect_to user_addresses_path
 		else
@@ -38,8 +39,15 @@ class User::AddressesController < ApplicationController
 
 	def destroy
 		address = Address.find(params[:id])
-		address.destroy
-	  redirect_to user_addresses_path
+		if address.shipped_orders.include?(address.id)
+		elsif
+			address.orders.empty?
+			address.destroy
+			flash[:notice] = "Your address has been successfully deleted"
+		else
+			flash[:notice] = "That address is currently in use. You still have time to edit your address before your order is shipped!"
+		end
+		redirect_to user_addresses_path
 	end
 
 	private

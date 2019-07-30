@@ -13,6 +13,7 @@ RSpec.describe 'Edit User Address' do
 			@address_2 = @user.addresses.create!(name: 'Megan', address: '777 Market St', city: 'Denver', state: 'CO', zip: 80218, nickname: 1)
 			@order_1 = @user.orders.create!(status: "packaged", address_id: @address_1.id)
       @order_2 = @user.orders.create!(status: "pending", address_id: @address_1.id)
+			@order_3 = @user.orders.create!(status: "shipped", address_id: @address_1.id)
       @order_item_1 = @order_1.order_items.create!(item: @ogre, price: @ogre.price, quantity: 2, fulfilled: true)
       @order_item_2 = @order_2.order_items.create!(item: @giant, price: @hippo.price, quantity: 2, fulfilled: true)
       @order_item_3 = @order_2.order_items.create!(item: @ogre, price: @ogre.price, quantity: 2, fulfilled: false)
@@ -87,10 +88,10 @@ RSpec.describe 'Edit User Address' do
 
 		it 'I cannot change the address if the order has been shipped' do
 
-			visit "/profile/orders/#{@order_1.id}"
+			visit "/profile/orders/#{@order_3.id}"
 			expect(page).to_not have_button('Change Address')
 
-			visit "/profile/orders/#{@order_1.id}/edit"
+			visit "/profile/orders/#{@order_3.id}/edit"
 			expect(page).to have_content("The page you were looking for doesn't exist.")
 		end
   end

@@ -14,9 +14,9 @@
   <h2>Reviews</h2>
   <% if @item.reviews.empty? %>
     <p>No Reviews Yet!</p>
+		<%= button_to 'Add Review', new_item_review_path(@item), method: :get %>
   <% else %>
     <h3>Average Rating: <%= @item.average_rating.round(2) %></h3>
-		<%= button_to 'Add Review', new_item_review_path(@item), method: :get %>
 		</section>
 
     <section id='top-three-reviews'>

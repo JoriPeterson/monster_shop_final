@@ -28,7 +28,7 @@ class User::AddressesController < ApplicationController
 	def update
 		@address = Address.find(params[:id])
 		if @address.update(address_params)
-			flash[:notice] = "Your address has been successfully added"
+			flash[:notice] = "Your address has been successfully updated!"
 			@address.reload
 			redirect_to user_addresses_path
 		else

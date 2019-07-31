@@ -31,7 +31,7 @@ class User::OrdersController < ApplicationController
 
 	def edit
 		@order = current_user.orders.find(params[:id])
-			if @order.pending?
+			unless @order.shipped?
 				@addresses = current_user.addresses
 				@address = Address.new
 			else
@@ -41,7 +41,7 @@ class User::OrdersController < ApplicationController
 
 	def update
 		@order = current_user.orders.find(params[:id])
-			if @order.pending?
+			unless @order.shipped?
 				@order.address_id = params[:patch][:my_selection]
 				@order.update(order_params)
 				@order.reload

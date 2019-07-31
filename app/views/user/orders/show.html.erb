@@ -11,7 +11,7 @@
 <h1>Shipping Address</h1>
 <section>
 <p><%= @address.display %></p>
-<% unless @order.shipped? %>
+<% if @order.pending? %>
 	<%= button_to 'Change Address', "/profile/orders/#{@order.id}/edit", method: :get %>
 <% end %>
 </section>

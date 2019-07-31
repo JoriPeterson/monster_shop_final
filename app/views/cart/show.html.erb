@@ -27,7 +27,7 @@
 	    <% else%>
 				<p>Please select an address:</p>
 				<%= form_tag "/orders", method: :post do %>
-					<%= collection_select(:post, :my_selection, @addresses, :id, :display ) %>
+					<%= collection_select(:post, :my_selection, @addresses, :id, :display ) %><br>
 					<%= submit_tag 'Check Out' %>
 				<% end %>
 			<% end %>
